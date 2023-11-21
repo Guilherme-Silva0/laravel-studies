@@ -9,7 +9,8 @@
                 <div class="card">
                     <div class="card-image">
                         <img src="{{ $product->image }}">
-                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i
+                        <a href="{{ route('site.details', $product->slug) }}"
+                            class="btn-floating halfway-fab waves-effect waves-light red"><i
                                 class="material-icons">visibility</i></a>
                     </div>
                     <div class="card-content">
