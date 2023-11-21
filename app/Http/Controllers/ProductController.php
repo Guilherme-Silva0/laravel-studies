@@ -15,7 +15,7 @@ class ProductController extends Controller
         // return "Products";
         // return dd($products);
 
-        $products = Product::all();
+        $products = Product::paginate(10);
 
         return view('site.home', compact('products'));
     }
