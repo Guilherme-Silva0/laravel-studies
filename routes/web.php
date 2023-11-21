@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SiteController;
 
 /*
 
@@ -76,3 +77,5 @@ Route::get('/product/{id?}', [ProdutoController::class, 'show'])->name('product.
 */
 
 Route::resource('products', ProductController::class);
+
+Route::get('/', [SiteController::class, 'index'])->name('site.index');
