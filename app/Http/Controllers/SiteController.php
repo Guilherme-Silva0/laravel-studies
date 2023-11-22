@@ -22,4 +22,10 @@ class SiteController extends Controller
         $product = Product::where('slug', $slug)->first();
         return view('site.details', compact('product'));
     }
+
+    public function category($id)
+    {
+        $products = Product::where('category_id', $id)->paginate(10);
+        return view('site.category', compact('products'));
+    }
 }
