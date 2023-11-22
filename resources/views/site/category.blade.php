@@ -1,6 +1,6 @@
 @extends('site.layout')
 
-@section('title', 'Home')
+@section('title', $category->name)
 
 @section('content')
     <div class="row container">

@@ -8,8 +8,8 @@ class CartController extends Controller
 {
     public function cartList()
     {
-        $itens = \Cart::getContent();
-        dd($itens);
+        $items = \Cart::getContent();
+        return view('site.cart', compact('items'));
     }
 
     public function addToCart(Request $request)
