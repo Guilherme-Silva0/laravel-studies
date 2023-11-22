@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="row container">
-        <h3>Categoria</h3>
+        <h5>Categoria: {{ $category->name }}</h5>
         @foreach ($products as $product)
             <div class="col s12 m4">
                 <div class="card">

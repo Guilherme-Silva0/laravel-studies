@@ -1,13 +1,14 @@
 @extends('site.layout')
 @section('title', 'Detalhes do produto')
 @section('content')
-    <div class="row container">
+    <div class="row container"> <br />
         @if (isset($product))
             <div class="col s12 m6">
                 <img src="{{ $product->image }}" alt="Imagem do produto" class="responsive-img" />
             </div>
             <div class="col s12 m6">
-                <h1>{{ $product->name }}</h1>
+                <h4>{{ $product->name }}</h4>
+                <h4>R$ {{ number_format($product->price, 2, ',', '.') }}</h4>
                 <p>{{ $product->description }}</p>
                 <p>
                     Postado por:
