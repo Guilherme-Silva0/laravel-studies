@@ -9,6 +9,11 @@
             <div class="col s12 m6">
                 <h1>{{ $product->name }}</h1>
                 <p>{{ $product->description }}</p>
+                <p>
+                    Postado por:
+                    {{ $product->user->first_name . ' ' . $product->user->last_name }} <br />
+                    Categoria: {{ $product->category->name }}
+                </p>
                 <button class="btn orange btn-large waves-effect waves-light">Comprar</button>
             </div>
         @else
