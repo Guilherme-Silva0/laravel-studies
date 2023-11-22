@@ -11,4 +11,17 @@ class CartController extends Controller
         $itens = \Cart::getContent();
         dd($itens);
     }
+
+    public function addToCart(Request $request)
+    {
+        \Cart::add([
+            'id' => $request->id,
+            'name' => $request->name,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
+            'attributes' => [
+                'image' => $request->image,
+            ],
+        ]);
+    }
 }

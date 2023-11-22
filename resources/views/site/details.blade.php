@@ -15,7 +15,15 @@
                     {{ $product->user->first_name . ' ' . $product->user->last_name }} <br />
                     Categoria: {{ $product->category->name }}
                 </p>
-                <button class="btn orange btn-large waves-effect waves-light">Comprar</button>
+                <form action={{ route('site.cart.add') }} method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $product->id }}">
+                    <input type="hidden" name="name" value="{{ $product->name }}">
+                    <input type="hidden" name="price" value="{{ $product->price }}">
+                    <input type="number" name="quantity" value="1">
+                    <input type="hidden" name="image" value="{{ $product->image }}">
+                    <button class="btn orange btn-large waves-effect waves-light">Comprar</button>
+                </form>
             </div>
         @else
             <div class="col s12 center">
