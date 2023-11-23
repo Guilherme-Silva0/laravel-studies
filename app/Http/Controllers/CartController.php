@@ -18,7 +18,7 @@ class CartController extends Controller
             'id' => $request->id,
             'name' => $request->name,
             'price' => $request->price,
-            'quantity' => $request->quantity,
+            'quantity' => abs($request->quantity),
             'attributes' => [
                 'image' => $request->image,
             ],
@@ -40,7 +40,7 @@ class CartController extends Controller
             [
                 'quantity' => [
                     'relative' => false,
-                    'value' => $request->quantity
+                    'value' => abs($request->quantity)
                 ],
             ]
         );
