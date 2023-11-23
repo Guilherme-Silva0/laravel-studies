@@ -47,4 +47,10 @@ class CartController extends Controller
 
         return redirect()->route('site.cart')->with('success', 'Item atualizado com sucesso');
     }
+
+    public function clearCart()
+    {
+        \Cart::clear();
+        return redirect()->route('site.cart')->with('warning', 'Seu carrinho está vazio');
+    }
 }
