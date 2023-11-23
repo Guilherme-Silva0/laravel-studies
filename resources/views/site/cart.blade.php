@@ -4,6 +4,16 @@
 
 @section('content')
     <div class="row container">
+
+        @if ($message = Session::get('success'))
+            <div class="card green">
+                <div class="card-content white-text">
+                    <span class="card-title">Tudo certo!</span>
+                    <p>{{ $message }}</p>
+                </div>
+            </div>
+        @endif
+
         <h5>Seu carrinho possui {{ $items->count() }} {{ $items->count() > 1 ? 'itens' : 'item' }}</h5>
         <table class="striped">
             <thead>
@@ -19,17 +29,35 @@
             <tbody>
                 @foreach ($items as $item)
                     <tr>
-                        <td><img src="{{ $item->attributes->image }}" alt="Imagem do produto" width="70"
+                        <td>
+                            <img src="{{ $item->attributes->image }}" alt="Imagem do produto" width="70"
                                 class="responsive-img circle">
                         </td>
+
                         <td>{{ $item->name }}</td>
+
                         <td>R$ {{ number_format($item->price, 2, ',', '.') }}</td>
-                        <td><input style="width: 40px; font-weight: 600;" min="1" class="white center" type="number"
-                                name="quantity" value="{{ $item->quantity }}"></td>
-                        <td> <button class="btn-floating waves-effect waves-light orange"><i
-                                    class="material-icons">refresh</i></button>
-                            <button class="btn-floating waves-effect waves-light red"><i
-                                    class="material-icons">delete</i></button>
+
+                        <td>
+
+                            <input style="width: 40px; font-weight: 600;" min="1" class="white center" type="number"
+                                name="quantity" value="{{ $item->quantity }}">
+
+                        </td>
+                        <td>
+
+                            <button class="btn-floating waves-effect waves-light orange">
+                                <i class="material-icons">refresh</i>
+                            </button>
+
+                            <form action="{{ route('site.cart.remove') }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $item->id }}">
+                                <button class="btn-floating waves-effect waves-light red">
+                                    <i class="material-icons">delete</i>
+                                </button>
+                            </form>
+
                         </td>
                     </tr>
                 @endforeach

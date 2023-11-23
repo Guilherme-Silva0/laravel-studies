@@ -25,7 +25,8 @@
             <a href="/" class="brand-logo center">Show</a>
             <ul id="nav-mobile" class="left">
                 <li><a href={{ route('site.index') }}>Home</a></li>
-                <li><a href="{{ route('site.cart') }}">Carrinho</a></li>
+                <li><a href="{{ route('site.cart') }}">Carrinho <span class="new badge blue"
+                            data-badge-caption="">{{ \Cart::getContent()->count() }}</span></a></li>
                 <li><a href="" class="dropdown-trigger" data-target="dropdown1"> Categorias <i
                             class="material-icons right">expand_more</i></i> </a></li>
             </ul>

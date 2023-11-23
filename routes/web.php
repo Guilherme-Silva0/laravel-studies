@@ -84,3 +84,4 @@ Route::get('/product/{slug}', [SiteController::class, 'details'])->name('site.de
 Route::get('/category/{id}', [SiteController::class, 'category'])->name('site.category');
 Route::get('/cart', [CartController::class, 'cartList'])->name('site.cart');
 Route::post('/cart', [CartController::class, 'addToCart'])->name('site.cart.add');
+Route::post('/cart-remove', [CartController::class, 'removeCart'])->name('site.cart.remove');
