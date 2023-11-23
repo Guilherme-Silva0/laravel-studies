@@ -85,3 +85,4 @@ Route::get('/category/{id}', [SiteController::class, 'category'])->name('site.ca
 Route::get('/cart', [CartController::class, 'cartList'])->name('site.cart');
 Route::post('/cart', [CartController::class, 'addToCart'])->name('site.cart.add');
 Route::post('/cart-remove', [CartController::class, 'removeCart'])->name('site.cart.remove');
+Route::post('/cart-update', [CartController::class, 'updateCart'])->name('site.cart.update');
