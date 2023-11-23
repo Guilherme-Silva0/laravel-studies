@@ -90,3 +90,6 @@ Route::post('/cart', [CartController::class, 'addToCart'])->name('site.cart.add'
 Route::post('/cart-remove', [CartController::class, 'removeCart'])->name('site.cart.remove');
 Route::post('/cart-update', [CartController::class, 'updateCart'])->name('site.cart.update');
 Route::get('/cart-clear', [CartController::class, 'clearCart'])->name('site.cart.clear');
+
+// Route::view('login.form')->name('login.form');
+// Route::post('auth', [LoginController::class, 'auth'])->name('login.auth');
