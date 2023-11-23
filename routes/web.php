@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SiteController;
@@ -91,5 +92,5 @@ Route::post('/cart-remove', [CartController::class, 'removeCart'])->name('site.c
 Route::post('/cart-update', [CartController::class, 'updateCart'])->name('site.cart.update');
 Route::get('/cart-clear', [CartController::class, 'clearCart'])->name('site.cart.clear');
 
-// Route::view('login.form')->name('login.form');
-// Route::post('auth', [LoginController::class, 'auth'])->name('login.auth');
+Route::view('/login', 'login.form')->name('login.form');
+Route::post('auth', [LoginController::class, 'auth'])->name('login.auth');

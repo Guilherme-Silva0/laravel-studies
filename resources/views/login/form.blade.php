@@ -1,10 +1,11 @@
-@if ($message = Session::get('erro'))
-    <div class="card orange">
-        <div class="card-content white-text">
-            <span class="card-title">Opa!</span>
-            <p>{{ $message }}</p>
-        </div>
-    </div>
+@if ($message = Session::get('error'))
+    {{ $message }}
+@endif
+
+@if ($errors->any())
+    @foreach ($errors->all() as $error)
+        {{ $error }} <br>
+    @endforeach
 @endif
 
 <form action="{{ route('login.auth') }}" method="POST">
