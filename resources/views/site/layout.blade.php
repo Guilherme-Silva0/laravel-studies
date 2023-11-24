@@ -20,15 +20,38 @@
         @endforeach
     </ul>
 
+    <ul id="dropdown2" class="dropdown-content">
+        <li><a href={{ route('admin.dashboard') }}>Dashboard</a></li>
+    </ul>
+
     <nav class="red">
         <div class="nav-wrapper container">
             <a href="/" class="brand-logo center">Show</a>
             <ul id="nav-mobile" class="left">
                 <li><a href={{ route('site.index') }}>Home</a></li>
-                <li><a href="{{ route('site.cart') }}">Carrinho <span class="new badge blue"
-                            data-badge-caption="">{{ \Cart::getContent()->count() }}</span></a></li>
-                <li><a href="" class="dropdown-trigger" data-target="dropdown1"> Categorias <i
-                            class="material-icons right">expand_more</i></i> </a></li>
+                <li>
+                    <a href="{{ route('site.cart') }}">
+                        Carrinho
+                        <span class="new badge blue" data-badge-caption="">
+                            {{ \Cart::getContent()->count() }}
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="dropdown-trigger" data-target="dropdown1">
+                        Categorias
+                        <i class="material-icons right">expand_more</i>
+                    </a>
+                </li>
+            </ul>
+
+            <ul id="nav-mobile" class="right">
+                <li>
+                    <a href="" class="dropdown-trigger" data-target="dropdown2">
+                        Olá {{ auth()->user()->first_name }}!
+                        <i class="material-icons right">expand_more</i>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
