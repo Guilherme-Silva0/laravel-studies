@@ -18,7 +18,7 @@ class LoginController extends Controller
             'email.email' => 'O campo e-mail deve ser um e-mail válido',
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $request->remember)) {
             $request->session()->regenerate();
             return redirect()->intended('admin/dashboard');
         }
