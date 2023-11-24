@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\UserController;
 
 /*
 
@@ -94,8 +95,10 @@ Route::post('/cart-update', [CartController::class, 'updateCart'])->name('site.c
 Route::get('/cart-clear', [CartController::class, 'clearCart'])->name('site.cart.clear');
 
 Route::view('/login', 'login.form')->name('login.form');
+Route::view('/register', 'login.create')->name('login.create');
 Route::post('auth', [LoginController::class, 'auth'])->name('login.auth');
 Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
+Route::resource('users', UserController::class);
 
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])
     ->name('admin.dashboard')
