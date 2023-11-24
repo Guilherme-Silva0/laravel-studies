@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
@@ -94,3 +95,5 @@ Route::get('/cart-clear', [CartController::class, 'clearCart'])->name('site.cart
 
 Route::view('/login', 'login.form')->name('login.form');
 Route::post('auth', [LoginController::class, 'auth'])->name('login.auth');
+
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
