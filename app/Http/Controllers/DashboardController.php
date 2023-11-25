@@ -35,11 +35,11 @@ class DashboardController extends Controller
 
         // gráfico 2 - Categorias
 
-        $categoriesData = Category::all();
+        $categoriesData = Category::with('products')->get();
         
         foreach($categoriesData as $data) {
             $categoryName[] = $data->name;
-            $categoryTotal[] = Product::where('category_id', $data->id)->count();
+            $categoryTotal[] = $data->products->count();
         }
 
         $categoryLabel = json_encode($categoryName);
