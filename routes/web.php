@@ -103,3 +103,8 @@ Route::resource('users', UserController::class);
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])
     ->name('admin.dashboard')
     ->middleware(['auth', 'checkEmail']);
+Route::get('/admin/products', function () {
+    return view('admin.products');
+})
+    ->name('admin.products')
+    ->middleware(['auth', 'checkEmail']);
