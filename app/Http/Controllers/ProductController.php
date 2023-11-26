@@ -13,7 +13,7 @@ class ProductController extends Controller
     public function index()
     {
         // return dd($products);
-        $products = Product::all();
+        $products = Product::paginate(6);
         return view('admin.products', compact('products'));
     }
 
