@@ -49,7 +49,7 @@
 
                     @foreach ($products as $product)
                         <tr>
-                            <td><img src="{{ $product->image }}" class="circle "></td>
+                            <td><img src="{{ url("storage/{$product->image}") }}" class="circle "></td>
                             <td>#{{ $product->id }}</td>
                             <td>{{ $product->name }}</td>
                             <td>R$ {{ number_format($product->price, 2, ',', '.') }}</td>

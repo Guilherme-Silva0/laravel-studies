@@ -109,3 +109,6 @@ Route::get('/admin/products', [ProductController::class, 'index'])
 Route::delete('/admin/products/delete/{id}', [ProductController::class, 'destroy'])
     ->name('admin.products.destroy')
     ->middleware(['auth', 'checkEmail']);
+Route::post('/admin/products/store', [ProductController::class, 'store'])
+    ->name('admin.products.store')
+    ->middleware(['auth', 'checkEmail']);

@@ -4,7 +4,7 @@
     <div class="row container"> <br />
         @if (isset($product))
             <div class="col s12 m6">
-                <img src="{{ $product->image }}" alt="Imagem do produto" class="responsive-img" />
+                <img src="{{ url("storage/{$product->image}") }}" alt="Imagem do produto" class="responsive-img" />
             </div>
             <div class="col s12 m6">
                 <h4>{{ $product->name }}</h4>

@@ -47,8 +47,8 @@
                     @foreach ($items as $item)
                         <tr>
                             <td>
-                                <img src="{{ $item->attributes->image }}" alt="Imagem do produto" width="70"
-                                    class="responsive-img circle">
+                                <img src="{{ url("storage/{$item->attributes->image}") }}" alt="Imagem do produto"
+                                    width="70" class="responsive-img circle">
                             </td>
 
                             <td>{{ $item->name }}</td>

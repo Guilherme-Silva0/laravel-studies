@@ -8,7 +8,7 @@
             <div class="col s12 m4">
                 <div class="card">
                     <div class="card-image">
-                        <img src="{{ $product->image }}">
+                        <img src="{{ url("storage/{$product->image}") }}">
                         @can('seeProduct', $product)
                             <a href="{{ route('site.details', $product->slug) }}"
                                 class="btn-floating halfway-fab waves-effect waves-light red">

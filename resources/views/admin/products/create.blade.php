@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="input-field col s12">
-                    <select name="category">
+                    <select name="category_id">
                         <option value="" disabled selected>Escolha uma categoria</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -40,6 +40,8 @@
                         <input class="file-path validate" type="text">
                     </div>
                 </div>
+
+                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
             </div>
 

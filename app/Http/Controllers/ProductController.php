@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -33,7 +34,19 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = $request->all();
+
+        if($request->image) {
+            $product['image'] = $request->image->store('products');
+        } else {
+            $product['image'] = 'products/placeholder-image.jpg';
+        }
+
+
+        $product['slug'] = Str::slug($request->name);
+
+        $product = Product::create($product);
+        return redirect()->route('admin.products')->with('success', 'Produto criado com sucesso!');
     }
 
     /**
