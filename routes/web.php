@@ -106,3 +106,6 @@ Route::get('/admin/dashboard', [DashboardController::class, 'index'])
 Route::get('/admin/products', [ProductController::class, 'index'])
     ->name('admin.products')
     ->middleware(['auth', 'checkEmail']);
+Route::delete('/admin/products/delete/{id}', [ProductController::class, 'destroy'])
+    ->name('admin.products.destroy')
+    ->middleware(['auth', 'checkEmail']);

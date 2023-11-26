@@ -14,7 +14,8 @@ class ProductController extends Controller
     {
         // return dd($products);
         $products = Product::paginate(6);
-        return view('admin.products', compact('products'));
+        $productsTotalCount = Product::count();
+        return view('admin.products', compact('products', 'productsTotalCount'));
     }
 
     /**
@@ -62,6 +63,8 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::find($id);
+        $product->delete();
+        return redirect()->route('admin.products');
     }
 }
