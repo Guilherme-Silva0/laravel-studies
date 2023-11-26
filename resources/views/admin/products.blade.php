@@ -31,6 +31,7 @@
         </nav>
 
         <div class="card z-depth-4 registros">
+            @include('includes.messages')
             <table class="striped ">
                 <thead>
                     <tr>
