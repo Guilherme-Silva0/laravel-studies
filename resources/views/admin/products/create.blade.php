@@ -1,31 +1,51 @@
 <!-- Modal Structure -->
 <div id="create" class="modal">
     <div class="modal-content">
-        <h4><i class="material-icons">card_giftcard</i> Novo produto</h4>
-        <form class="col s12">
+        <h4><i class="material-icons">playlist_add_circle</i> Novo produto</h4>
+        <form class="col s12" action="{{ route('admin.products.store') }}" method="post" enctype="multipart/form-data">
+            @csrf
             <div class="row">
+
                 <div class="input-field col s6">
-                    <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-                    <label for="first_name">First Name</label>
+                    <input name="name" id="name" type="text" class="validate">
+                    <label for="name">Nome do produto</label>
                 </div>
+
                 <div class="input-field col s6">
-                    <input id="last_name" type="text" class="validate">
-                    <label for="last_name">Last Name</label>
+                    <input name="price" id="price" type="number" min="0" class="validate">
+                    <label for="price">Preço</label>
                 </div>
 
                 <div class="input-field col s12">
-                    <select>
-                        <option value="" disabled selected>Choose your option</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
+                    <input name="description" id="description" type="text" class="validate">
+                    <label for="description">Descrição</label>
+                </div>
+
+                <div class="input-field col s12">
+                    <select name="category">
+                        <option value="" disabled selected>Escolha uma categoria</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
                     </select>
-                    <label>Materialize Select</label>
+                    <label>Categoria</label>
+                </div>
+
+                <div class="file-field input-field col s12">
+                    <div class="btn">
+                        <span>Imagem</span>
+                        <input type="file" name="image">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
                 </div>
 
             </div>
 
-            <a href="#!" class="modal-close waves-effect waves-green btn blue right">Cadastrar</a><br>
+            <button type="submit" href="#!" class="waves-effect waves-green btn green right">
+                Cadastrar
+            </button><br>
     </div>
 
     </form>

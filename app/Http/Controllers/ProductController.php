@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
@@ -15,7 +16,8 @@ class ProductController extends Controller
         // return dd($products);
         $products = Product::paginate(6);
         $productsTotalCount = Product::count();
-        return view('admin.products', compact('products', 'productsTotalCount'));
+        $categories = Category::all();
+        return view('admin.products', compact('products', 'productsTotalCount', 'categories'));
     }
 
     /**
