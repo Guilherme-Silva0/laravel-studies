@@ -79,50 +79,25 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td><img src="{{ asset('img/mouse.jpg') }}" class="circle "></td>
-                        <td>#123</td>
-                        <td>Mouse USB</td>
-                        <td>R$ 7.00</td>
-                        <td>Eletrônicos</td>
-                        <td><a class="btn-floating  waves-effect waves-light orange"><i
-                                    class="material-icons">mode_edit</i></a>
-                            <a class="btn-floating  waves-effect waves-light red"><i class="material-icons">delete</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><img src="{{ asset('img/mouse.jpg') }}" class="circle"></td>
-                        <td>#123</td>
-                        <td>Mouse USB</td>
-                        <td>R$ 7.00</td>
-                        <td>Eletrônicos</td>
-                        <td><a class="btn-floating  waves-effect waves-light orange"><i
-                                    class="material-icons">mode_edit</i></a>
-                            <a class="btn-floating  waves-effect waves-light red"><i class="material-icons">delete</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><img src="{{ asset('img/mouse.jpg') }}" class="circle"></td>
-                        <td>#123</td>
-                        <td>Mouse USB</td>
-                        <td>R$ 7.00</td>
-                        <td>Eletrônicos</td>
-                        <td><a class="btn-floating  waves-effect waves-light orange"><i
-                                    class="material-icons">mode_edit</i></a>
-                            <a class="btn-floating  waves-effect waves-light red"><i class="material-icons">delete</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><img src="{{ asset('img/mouse.jpg') }}" class="circle"></td>
-                        <td>#123</td>
-                        <td>Mouse USB</td>
-                        <td>R$ 7.00</td>
-                        <td>Eletrônicos</td>
-                        <td><a class="btn-floating  waves-effect waves-light orange"><i
-                                    class="material-icons">mode_edit</i></a>
-                            <a class="btn-floating  waves-effect waves-light red"><i class="material-icons">delete</i></a>
-                        </td>
-                    </tr>
+
+                    @foreach ($products as $product)
+                        <tr>
+                            <td><img src="{{ $product->image }}" class="circle "></td>
+                            <td>#{{ $product->id }}</td>
+                            <td>{{ $product->name }}</td>
+                            <td>R$ {{ number_format($product->price, 2, ',', '.') }}</td>
+                            <td>{{ $product->category->name }}</td>
+                            <td>
+                                <a class="btn-floating  waves-effect waves-light orange">
+                                    <i class="material-icons">mode_edit</i>
+                                </a>
+                                <a class="btn-floating  waves-effect waves-light red">
+                                    <i class="material-icons">delete</i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+
                 </tbody>
             </table>
         </div>

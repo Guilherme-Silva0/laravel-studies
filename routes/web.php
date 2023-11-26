@@ -80,7 +80,8 @@ Route::get('/', [ProdutoController::class, 'index'])->name('product.index');
 Route::get('/product/{id?}', [ProdutoController::class, 'show'])->name('product.show');
 */
 
-Route::resource('products', ProductController::class);
+// Route::resource('products', ProductController::class);
+// Route::resource('users', UserController::class);
 
 Route::get('/', [SiteController::class, 'index'])->name('site.index');
 
@@ -98,13 +99,10 @@ Route::view('/login', 'login.form')->name('login.form');
 Route::view('/register', 'login.create')->name('login.create');
 Route::post('auth', [LoginController::class, 'auth'])->name('login.auth');
 Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
-Route::resource('users', UserController::class);
 
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])
     ->name('admin.dashboard')
     ->middleware(['auth', 'checkEmail']);
-Route::get('/admin/products', function () {
-    return view('admin.products');
-})
+Route::get('/admin/products', [ProductController::class, 'index'])
     ->name('admin.products')
     ->middleware(['auth', 'checkEmail']);

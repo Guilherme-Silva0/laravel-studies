@@ -12,12 +12,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // return "Products";
         // return dd($products);
-
-        $products = Product::paginate(10);
-
-        return view('site.home', compact('products'));
+        $products = Product::all();
+        return view('admin.products', compact('products'));
     }
 
     /**
