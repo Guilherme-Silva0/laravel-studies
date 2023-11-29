@@ -19,8 +19,6 @@ class SupportController extends Controller
     {
         $supports = $this->service->getAll();
 
-        dd($supports);
-
         return view('admin.supports.index', compact('supports'));
     }
 

@@ -23,7 +23,7 @@ class SupportRepositoryEloquent implements SupportRepositoryInterface
                 $query->where('body', 'like', "%{$filter}%");
             }
         })
-        ->all()
+        ->get()
         ->toArray();
     }
 
