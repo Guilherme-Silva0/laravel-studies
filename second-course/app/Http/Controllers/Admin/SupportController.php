@@ -20,11 +20,13 @@ class SupportController extends Controller
     {
         $supports = $this->service->paginate(
             $request->get('page', 1),
-            $request->get('per_page', 15),
+            $request->get('per_page', 1), //For debug
             $request->filter
         );
 
-        return view('admin.supports.index', compact('supports'));
+        $filters = isset($request->filter) ? ['filter' => $request->get('filter', '')] : '';
+
+        return view('admin.supports.index', compact('supports', 'filters'));
     }
 
     public function show(string $id)
