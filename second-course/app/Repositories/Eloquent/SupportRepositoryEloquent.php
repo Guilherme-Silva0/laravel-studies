@@ -6,6 +6,7 @@ use stdClass;
 use App\DTO\CreateSupportDTO;
 use App\DTO\UpdateSupportDTO;
 use App\Models\Support;
+use App\Repositories\PaginationInterface;
 use App\Repositories\SupportRepositoryInterface;
 
 class SupportRepositoryEloquent implements SupportRepositoryInterface
@@ -15,12 +16,24 @@ class SupportRepositoryEloquent implements SupportRepositoryInterface
     ) {
     }
 
+    public function paginate(int $page = 1, int $totalPerPage = 15, string $filter = null): PaginationInterface
+    {
+        $result = $this->model->where(function ($query) use ($filter) {
+            if($filter) {
+                $query->where('subject');
+                $query->orWhere('body', 'like', "%{$filter}%");
+            }
+        })
+        ->paginate($totalPerPage, ['*'], 'page', $page);
+        dd($result);
+    }
+
     public function getAll(string $filter = null): array
     {
         return $this->model->where(function ($query) use ($filter) {
             if($filter) {
                 $query->where('subject');
-                $query->where('body', 'like', "%{$filter}%");
+                $query->orWhere('body', 'like', "%{$filter}%");
             }
         })
         ->get()
