@@ -20,9 +20,11 @@ class StoreUpdateSupport extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    {
+    {   
+        if($this->method() === 'PUT') $id = $this->support ?? $this->id;
+
         $rules = $this->method() === 'PUT' ? [
-            'subject' => "required|min:3|max:255|unique:supports,subject,{$this->id},id",
+            'subject' => "required|min:3|max:255|unique:supports,subject,{$id},id",
             'body' => ['required', 'min:3', 'max:100000'],
         ] : [
             'subject' => 'required|min:3|max:255|unique:supports,subject',
