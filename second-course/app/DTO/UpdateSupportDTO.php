@@ -19,7 +19,7 @@ class UpdateSupportDTO
         return new self(
             $request->id,
             $request->subject,
-            "active",
+            "a",
             $request->body,
         );
     }
