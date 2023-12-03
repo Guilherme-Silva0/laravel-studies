@@ -9,16 +9,16 @@
     @vite('resources/css/app.css')
 </head>
 
-<body>
-    <header>
+<body class="bg-slate-950">
+    <section class="container px-4 mx-auto">
         @yield('header')
-    </header>
-    <main>
-        @yield('content')
-    </main>
-    <footer>
-        #default footer
-    </footer>
+        <main>
+            @yield('content')
+        </main>
+        <footer>
+            #default footer
+        </footer>
+    </section>
 </body>
 
 </html>

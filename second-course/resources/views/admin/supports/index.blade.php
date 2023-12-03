@@ -2,7 +2,7 @@
 @section('title', 'Dúvidas')
 
 @section('header')
-    <h1>Listagem dos suportes</h1>
+    @include('admin.supports.partials.header', compact('supports'))
 @endsection
 
 @section('content')
