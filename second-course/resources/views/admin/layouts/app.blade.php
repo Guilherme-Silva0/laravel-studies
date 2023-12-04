@@ -15,9 +15,6 @@
         <main>
             @yield('content')
         </main>
-        <footer>
-            #default footer
-        </footer>
     </section>
 </body>
 
