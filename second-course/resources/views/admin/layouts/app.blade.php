@@ -13,6 +13,7 @@
     <section class="container px-4 mx-auto">
         @yield('header')
         <main>
+            <x-messages />
             @yield('content')
         </main>
     </section>

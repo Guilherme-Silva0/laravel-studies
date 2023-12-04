@@ -1,11 +1,18 @@
-<h1>Editar dúvida - {{ $support->id }}</h1>
+@extends('admin.layouts.app')
+@section('title', 'Editar')
 
-<x-alert />
+@section('header')
+    <h1 class="text-2xl text-gray-100 my-2">Editar dúvida - {{ $support->subject }}</h1>
+@endsection
 
-<form action="{{ route('supports.update', $support->id) }}" method="post">
-    @method('put')
-    @include('admin.supports.partials.form', [
-        'buttonText' => 'Editar',
-        'support' => $support,
-    ])
-</form>
+@section('content')
+    <x-alert />
+
+    <form action="{{ route('supports.update', $support->id) }}" method="post">
+        @method('put')
+        @include('admin.supports.partials.form', [
+            'buttonText' => 'Editar',
+            'support' => $support,
+        ])
+    </form>
+@endsection
