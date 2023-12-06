@@ -9,8 +9,8 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-slate-950">
-    <section class="container px-4 mx-auto">
+<body class="bg-slate-950 h-screen">
+    <section class="container px-4 mx-auto h-full">
         @yield('header')
         <main>
             <x-messages />
