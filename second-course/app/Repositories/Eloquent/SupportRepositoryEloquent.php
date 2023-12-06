@@ -2,9 +2,9 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\DTO\Supports\CreateSupportDTO;
+use App\DTO\Supports\UpdateSupportDTO;
 use stdClass;
-use App\DTO\CreateSupportDTO;
-use App\DTO\UpdateSupportDTO;
 use App\Models\Support;
 use App\Repositories\PaginationInterface;
 use App\Repositories\PaginationPresenter;

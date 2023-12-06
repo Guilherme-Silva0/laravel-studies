@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Adapters\ApiAdapter;
-use App\DTO\CreateSupportDTO;
-use App\DTO\UpdateSupportDTO;
+use App\DTO\Supports\CreateSupportDTO;
+use App\DTO\Supports\UpdateSupportDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateSupport;
 use App\Http\Resources\SupportResource;
