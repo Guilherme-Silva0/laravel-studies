@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Models\Support;
 use App\Observers\SupportObserver;
-use App\Repositories\Eloquent\SupportRepositoryEloquent;
+use App\Repositories\Eloquent\SupportRepository;
 use App\Repositories\Contracts\SupportRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(
             SupportRepositoryInterface::class,
-            SupportRepositoryEloquent::class
+            SupportRepository::class
         );
     }
 

@@ -10,7 +10,7 @@ use App\Repositories\Contracts\PaginationInterface;
 use App\Repositories\Contracts\SupportRepositoryInterface;
 use App\Repositories\PaginationPresenter;
 
-class SupportRepositoryEloquent implements SupportRepositoryInterface
+class SupportRepository implements SupportRepositoryInterface
 {
     public function __construct(
         protected Support $model
