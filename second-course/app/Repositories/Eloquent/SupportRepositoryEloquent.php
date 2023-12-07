@@ -6,9 +6,9 @@ use App\DTO\Supports\CreateSupportDTO;
 use App\DTO\Supports\UpdateSupportDTO;
 use stdClass;
 use App\Models\Support;
-use App\Repositories\PaginationInterface;
+use App\Repositories\Contracts\PaginationInterface;
+use App\Repositories\Contracts\SupportRepositoryInterface;
 use App\Repositories\PaginationPresenter;
-use App\Repositories\SupportRepositoryInterface;
 
 class SupportRepositoryEloquent implements SupportRepositoryInterface
 {
