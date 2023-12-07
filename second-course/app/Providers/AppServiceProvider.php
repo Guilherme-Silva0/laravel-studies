@@ -7,7 +7,7 @@ use App\Observers\SupportObserver;
 use App\Repositories\Eloquent\SupportRepository;
 use App\Repositories\Contracts\SupportRepositoryInterface;
 use App\Repositories\Eloquent\ReplySupportRepository;
-use App\Repositories\ReplyRepositoryInterface;
+use App\Repositories\Contracts\ReplyRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

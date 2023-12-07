@@ -4,7 +4,7 @@ namespace App\Repositories\Eloquent;
 
 use App\DTO\Replies\CreateReplyDTO;
 use App\Models\ReplySupport;
-use App\Repositories\ReplyRepositoryInterface;
+use App\Repositories\Contracts\ReplyRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 use stdClass;
 
