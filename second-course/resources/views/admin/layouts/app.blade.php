@@ -13,6 +13,7 @@
     <section class="container px-4 mx-auto h-full">
         @yield('header')
         <main>
+            <x-alert />
             <x-messages />
             @yield('content')
         </main>
