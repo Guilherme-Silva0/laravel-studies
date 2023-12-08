@@ -39,4 +39,17 @@ class ReplySupportController extends Controller
             ->route('replies.index', $id)
             ->with('message', 'Resposta criada!');
     }
+
+    public function destroy(string $supportId, string $id)
+    {
+        if(!$this->replySupportService->delete($id)) {
+            return redirect()
+                ->route('replies.index', $supportId)
+                ->with('message', 'Erro ao deletar a resposta');
+        }
+
+        return redirect()
+            ->route('replies.index', $supportId)
+            ->with('message', 'Resposta deletada!');
+    }
 }

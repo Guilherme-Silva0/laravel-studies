@@ -40,7 +40,7 @@
 
                         <div class="flex justify-between">
                             <span class="text-sm text-gray-400">{{ $reply['created_at'] }}</span>
-                            <form action="{{ route('supports.destroy', $support->id) }}" method="post">
+                            <form action="{{ route('replies.destroy', [$support->id, $reply['id']]) }}" method="post">
                                 @csrf()
                                 @method('DELETE')
                                 <button type="submit"
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                 @empty
-                    <p class="text-center text-gray-100">Sem respostas</p>
+                    <p class="text-gray-400 text-sm">Sem respostas</p>
                 @endforelse
 
 

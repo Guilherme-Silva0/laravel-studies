@@ -7,6 +7,6 @@ use stdClass;
 interface ReplyRepositoryInterface
 {
     public function getAllBySupportId(string $supportId): array;
-
     public function create(CreateReplyDTO $dto): stdClass;
+    public function delete(string $id): bool|null;
 }

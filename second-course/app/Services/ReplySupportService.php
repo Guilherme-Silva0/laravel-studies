@@ -22,4 +22,9 @@ class ReplySupportService
     {
         return $this->repository->create($dto);
     }
+
+    public function delete(string $id): bool|null
+    {
+        return $this->repository->delete($id);
+    }
 }
