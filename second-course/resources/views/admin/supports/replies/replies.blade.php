@@ -65,14 +65,15 @@
                     </div>
                 </div>
 
-                <div class="py-2">
-                    <textarea rows="2" name="message" placeholder="Sua resposta"
+                <form method="POST" action="{{ route('replies.store', $support->id) }}" class="py-2">
+                    @csrf
+                    <textarea rows="2" name="content" placeholder="Sua resposta"
                         class="resize-none block w-full py-1.5 pr-5 border rounded-lg placeholder-gray-400/70 pl-2 bg-slate-900 text-gray-300 border-gray-700  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"></textarea>
                     <button type="submit"
                         class="mt-2 bg-blue-600 w-fit px-3 py-1 rounded transition-all text-gray-100 hover:scale-110">
                         Enviar
                     </button>
-                </div>
+                </form>
 
 
             </div>
