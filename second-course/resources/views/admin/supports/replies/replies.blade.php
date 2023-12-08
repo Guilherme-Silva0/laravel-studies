@@ -23,47 +23,35 @@
 
             <!-- Item Container -->
             <div class="flex flex-col gap-3 text-gray-100">
-                <div class="flex flex-col gap-3 bg-gray-900 rounded-lg p-4 shadow-xl">
-                    <!-- Profile and Rating -->
-                    <div class="flex justify-between">
-                        <div class="flex gap-2 items-center">
-                            <div class="w-7 h-7 flex justify-center items-center rounded-full bg-red-500">CF</div>
-                            <b class="text-blue-600">Nome do Usuário</b>
+
+                @forelse ($replies as $reply)
+                    <div class="flex flex-col gap-3 bg-gray-900 rounded-lg p-4 shadow-xl">
+                        <!-- Profile and Rating -->
+                        <div class="flex justify-between">
+                            <div class="flex gap-2 items-center">
+                                <div class="w-7 h-7 flex justify-center items-center rounded-full bg-red-500">CF</div>
+                                <b class="text-blue-600">{{ $reply['user']['name'] }}</b>
+                            </div>
+                        </div>
+
+                        <div>
+                            {{ $reply['content'] }}
+                        </div>
+
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-400">{{ $reply['created_at'] }}</span>
+                            <form action="{{ route('supports.destroy', $support->id) }}" method="post">
+                                @csrf()
+                                @method('DELETE')
+                                <button type="submit"
+                                    class="bg-red-500 text-gray-100 py-1 px-4 border-b-4 border-red-700 rounded transition hover:scale-105">Deletar</button>
+                            </form>
                         </div>
                     </div>
+                @empty
+                    <p class="text-center text-gray-100">Sem respostas</p>
+                @endforelse
 
-                    <div>
-                        Algum texto de resposta aqui
-                    </div>
-
-                    <div class="flex justify-between">
-                        <span class="text-sm text-gray-400">d/m/Y</span>
-                    </div>
-                </div>
-
-                <div class="flex flex-col gap-3 bg-gray-900 rounded-lg p-4 shadow-xl">
-                    <!-- Profile and Rating -->
-                    <div class="flex justify-between">
-                        <div class="flex gap-2 items-center">
-                            <div class="w-7 h-7 flex justify-center items-center rounded-full bg-red-500">CF</div>
-                            <b class="text-blue-600">Nome do Usuário</b>
-                        </div>
-                    </div>
-
-                    <div>
-                        Algum texto de resposta aqui
-                    </div>
-
-                    <div class="flex justify-between">
-                        <span class="text-sm text-gray-400">d/m/Y</span>
-                        <form action="{{ route('supports.destroy', $support->id) }}" method="post">
-                            @csrf()
-                            @method('DELETE')
-                            <button type="submit"
-                                class="bg-red-500 text-gray-100 py-1 px-4 border-b-4 border-red-700 rounded transition hover:scale-105">Deletar</button>
-                        </form>
-                    </div>
-                </div>
 
                 <form method="POST" action="{{ route('replies.store', $support->id) }}" class="py-2">
                     @csrf
