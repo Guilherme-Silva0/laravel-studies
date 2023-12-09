@@ -9,12 +9,14 @@
             <div class="flex justify-between items-center">
                 <h1 class="text-lg text-gray-100">Detalhes da Dúvida: <b class="text-blue-600">{{ $support->subject }}</b>
                 </h1>
-                <form action="{{ route('supports.destroy', $support->id) }}" method="post">
-                    @csrf()
-                    @method('DELETE')
-                    <button type="submit"
-                        class="bg-red-500 text-gray-100 font-bold py-2 px-4 border-b-4 border-red-700 hover:scale-105 transition rounded">Deletar</button>
-                </form>
+                @can('owner', $support->user_id)
+                    <form action="{{ route('supports.destroy', $support->id) }}" method="post">
+                        @csrf()
+                        @method('DELETE')
+                        <button type="submit"
+                            class="bg-red-500 text-gray-100 font-bold py-2 px-4 border-b-4 border-red-700 hover:scale-105 transition rounded">Deletar</button>
+                    </form>
+                @endcan
             </div>
             <ul>
                 <li class="text-gray-100">Status: <x-status-support :status="$support->status" /></li>
@@ -40,12 +42,14 @@
 
                         <div class="flex justify-between">
                             <span class="text-sm text-gray-400">{{ $reply['created_at'] }}</span>
-                            <form action="{{ route('replies.destroy', [$support->id, $reply['id']]) }}" method="post">
-                                @csrf()
-                                @method('DELETE')
-                                <button type="submit"
-                                    class="bg-red-500 text-gray-100 py-1 px-4 border-b-4 border-red-700 rounded transition hover:scale-105">Deletar</button>
-                            </form>
+                            @can('owner', $reply['user']['id'])
+                                <form action="{{ route('replies.destroy', [$support->id, $reply['id']]) }}" method="post">
+                                    @csrf()
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="bg-red-500 text-gray-100 py-1 px-4 border-b-4 border-red-700 rounded transition hover:scale-105">Deletar</button>
+                                </form>
+                            @endcan
                         </div>
                     </div>
                 @empty
