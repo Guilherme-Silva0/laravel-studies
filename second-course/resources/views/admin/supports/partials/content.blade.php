@@ -62,10 +62,12 @@
                                 </td>
 
                                 <td class="px-4 py-2 text-sm whitespace-nowrap flex items-center justify-center">
-                                    <a href="{{ route('supports.edit', $support->id) }}"
-                                        class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg hover:text-gray-200">
-                                        Editar
-                                    </a>
+                                    @can('owner', $support->user_id)
+                                        <a href="{{ route('supports.edit', $support->id) }}"
+                                            class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg hover:text-gray-200">
+                                            Editar
+                                        </a>
+                                    @endcan
                                     <a href="{{ route('replies.index', $support->id) }}"
                                         class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg hover:text-gray-200">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
