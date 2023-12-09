@@ -9,6 +9,7 @@ use App\Models\Support;
 use App\Repositories\Contracts\PaginationInterface;
 use App\Repositories\Contracts\SupportRepositoryInterface;
 use App\Repositories\PaginationPresenter;
+use Illuminate\Support\Facades\Gate;
 
 class SupportRepository implements SupportRepositoryInterface
 {
@@ -54,7 +55,13 @@ class SupportRepository implements SupportRepositoryInterface
 
     public function delete(string $id): void
     {
-        $this->model->findOrFail($id)->delete();
+        $support = $this->model->findOrFail($id);
+
+        if (Gate::denies('owner', $support->user_id)) {
+            abort(403, 'Not Authorized');
+        }
+
+        $support->delete();
     }
 
     public function create(CreateSupportDTO $dto): stdClass
@@ -70,6 +77,10 @@ class SupportRepository implements SupportRepositoryInterface
     {
         if(!$support = $this->model->find($dto->id)) {
             return null;
+        }
+
+        if (Gate::denies('owner', $support->user_id)) {
+            abort(403, 'Not Authorized');
         }
 
         $support->update(
