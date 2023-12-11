@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquent;
 
 use App\DTO\Supports\CreateSupportDTO;
 use App\DTO\Supports\UpdateSupportDTO;
+use App\Enums\SupportStatus;
 use stdClass;
 use App\Models\Support;
 use App\Repositories\Contracts\PaginationInterface;
@@ -93,5 +94,13 @@ class SupportRepository implements SupportRepositoryInterface
         );
 
         return (object) $support->toArray();
+    }
+
+    public function updateStatus(string $id, SupportStatus $status): void
+    {
+        $this->model->where('id', $id)
+            ->update([
+                'status'=> $status->name
+            ]);
     }
 }

@@ -22,6 +22,8 @@ class ReplySupportService
     public function create(CreateReplyDTO $dto): stdClass
     {
         $reply = $this->repository->create($dto);
+
+        $reply->support_id = $dto->supportId;
         
         SupportReplied::dispatch($reply);
 
