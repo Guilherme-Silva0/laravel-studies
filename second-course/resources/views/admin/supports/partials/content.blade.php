@@ -44,11 +44,21 @@
                                 <td class="px-4 py-2 text-sm whitespace-nowrap">
                                     <div class="flex items-center">
                                         @foreach ($support->replies as $reply)
-                                            <div
-                                                class="w-7 h-7 flex -mx-1 justify-center items-center rounded-full bg-blue-500 border border-blue-300">
-                                                {{ getInitials($reply['user']['name']) }}
-                                            </div>
+                                            @if ($loop->index < 4)
+                                                <div
+                                                    class="w-7 h-7 flex -mx-1 justify-center items-center rounded-full bg-blue-500 border border-blue-300">
+                                                    {{ getInitials($reply['user']['name']) }}
+                                                </div>
+                                            @endif
                                         @endforeach
+
+                                        @if (count($support->replies) > 4)
+                                            <p
+                                                class="flex items-center justify-center w-7 h-7 -mx-1 text-xs text-blue-600 bg-blue-100 border-2 border-white rounded-full">
+                                                +{{ count($support->replies) - 4 }}
+                                            </p>
+                                        @endif
+
                                     </div>
                                 </td>
 
