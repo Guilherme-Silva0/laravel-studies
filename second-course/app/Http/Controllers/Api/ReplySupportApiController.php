@@ -22,7 +22,8 @@ class ReplySupportApiController extends Controller
     public function index(string $supportId)
     {
         if (!$this->supportService->findOne($supportId)) {
-            return response()->json(['message' => 'not_found'], Response::HTTP_NOT_FOUND);
+            return response()
+                ->json(['message' => 'not_found'], Response::HTTP_NOT_FOUND);
         }
 
         $replies = $this->replySupportService->getAllBySupportId($supportId);
@@ -41,5 +42,15 @@ class ReplySupportApiController extends Controller
         return (new ReplySupportResource($reply))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
+    }
+
+    public function destroy(string $id)
+    {
+        if(!$this->replySupportService->delete($id)) {
+            return response()
+                ->json(['message' => 'not_found'], Response::HTTP_NOT_FOUND);
+        }
+
+        return response()->json([], Response::HTTP_NO_CONTENT);
     }
 }
