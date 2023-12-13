@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.status-text-blue-500 {
+    @apply text-blue-500;
+}
+
+.status-text-red-500 {
+    @apply text-red-500;
+}
+
+.status-text-green-500 {
+    @apply text-green-500;
+}
