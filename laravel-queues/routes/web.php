@@ -1,18 +1,16 @@
 <?php
 
+use App\Jobs\MyJob;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+
+Route::get('/attack', function (Request $request) {
+    dispatch(new MyJob('Foi detectado uma tentativa de ataque brute force', $request->ip()))
+        ->delay(now()->addSeconds(5));
+
+    return redirect()->route('home');
+})->name('attack');
