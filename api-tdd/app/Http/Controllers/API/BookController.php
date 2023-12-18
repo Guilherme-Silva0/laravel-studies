@@ -31,4 +31,13 @@ class BookController extends Controller
 
         return response()->json($book, Response::HTTP_CREATED);
     }
+
+    public function update(Request $request, $bookId)
+    {
+        $book = $this->book->find($bookId);
+
+        $book->update($request->all());
+
+        return response()->json($book);
+    }
 }
