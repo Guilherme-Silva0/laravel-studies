@@ -40,4 +40,15 @@ class BookController extends Controller
 
         return response()->json($book);
     }
+
+    public function destroy($bookId)
+    {
+        if(!$book = $this->book->find($bookId)) {
+            return response()->json(null, Response::HTTP_NOT_FOUND);
+        }
+
+        $book->delete();
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
 }
