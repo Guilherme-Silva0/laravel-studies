@@ -80,6 +80,24 @@ class BookControllerTest extends TestCase
         });
     }
 
+    public function test_post_book_should_validate_when_try_create_a_invalid_book(): void
+    {
+        $response = $this->postJson('api/books', []);
+
+        $response->assertStatus(422);
+
+        $response->assertJson(function (AssertableJson $json) {
+
+            $json->hasAll(['message', 'errors']);
+
+            $json->whereAll([
+                'errors.title.0'=> 'Este campo é obrigatório',
+                'errors.isbn.0'=> 'Este campo é obrigatório',
+            ]);
+
+        });
+    }
+
     public function test_put_book_endpoint(): void
     {
         $newBook = Book::factory(1)->createOne();
