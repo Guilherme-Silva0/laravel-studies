@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class BookController extends Controller
 {
@@ -22,5 +23,12 @@ class BookController extends Controller
         $book = $this->book->find($bookId);
 
         return response()->json($book);
+    }
+
+    public function store(Request $request)
+    {
+        $book = $this->book->create($request->all());
+
+        return response()->json($book, Response::HTTP_CREATED);
     }
 }
