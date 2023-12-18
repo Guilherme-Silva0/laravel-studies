@@ -123,4 +123,19 @@ class BookControllerTest extends TestCase
             $json->where('title', $updatedBook['title']);
         });
     }
+
+    public function test_delete_book_endpoint(): void
+    {
+        $book = Book::factory(1)->createOne();
+        $response = $this->deleteJson('api/books/'.$book->id);
+        
+        $response->assertStatus(204);
+    }
+
+    public function test_delete_non_existing_book_endpoint(): void
+    {
+        $response = $this->deleteJson('api/books/0');
+        
+        $response->assertStatus(404);
+    }
 }
