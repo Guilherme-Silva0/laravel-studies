@@ -70,13 +70,57 @@ class BookControllerTest extends TestCase
         $response->assertStatus(201);
 
         $response->assertJson(function (AssertableJson $json) use ($book) {
-            
+
             $json->hasAll(['id', 'title', 'isbn', 'created_at', 'updated_at']);
 
             $json->whereAll([
                 'title' => $book->title,
                 'isbn' => $book->isbn,
             ])->etc();
+        });
+    }
+
+    public function test_put_book_endpoint(): void
+    {
+        $newBook = Book::factory(1)->createOne();
+
+        $updatedBook = [
+            'title' => 'test',
+            'isbn' => '1234567890',
+        ];
+
+        $response = $this->putJson('api/books/'.$newBook->id, $updatedBook);
+
+        $response->assertStatus(200);
+
+        $response->assertJson(function (AssertableJson $json) use ($updatedBook) {
+
+            $json->hasAll(['id', 'title', 'isbn', 'created_at', 'updated_at']);
+
+            $json->whereAll([
+                'title' => $updatedBook['title'],
+                'isbn' => $updatedBook['isbn'],
+            ])->etc();
+        });
+    }
+
+    public function test_patch_book_endpoint(): void
+    {
+        $newBook = Book::factory(1)->createOne();
+
+        $updatedBook = [
+            'title' => 'test',
+        ];
+
+        $response = $this->putJson('api/books/'.$newBook->id, $updatedBook);
+
+        $response->assertStatus(200);
+
+        $response->assertJson(function (AssertableJson $json) use ($updatedBook) {
+
+            $json->hasAll(['id', 'title', 'isbn', 'created_at', 'updated_at']);
+
+            $json->where('title', $updatedBook['title']);
         });
     }
 }
