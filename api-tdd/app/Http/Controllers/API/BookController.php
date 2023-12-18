@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\BookStoreRequest;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -25,7 +26,7 @@ class BookController extends Controller
         return response()->json($book);
     }
 
-    public function store(Request $request)
+    public function store(BookStoreRequest $request)
     {
         $book = $this->book->create($request->all());
 
