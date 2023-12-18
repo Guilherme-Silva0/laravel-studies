@@ -12,3 +12,4 @@ Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/books/{bookId}', [BookController::class, 'show'])->name('books.show');
 Route::post('/books', [BookController::class, 'store'])->name('books.store');
 Route::match(['put', 'patch'], '/books/{bookId}', [BookController::class, 'update'])->name('books.update');
+Route::delete('/books/{bookId}', [BookController::class, 'destroy'])->name('books.destroy');
