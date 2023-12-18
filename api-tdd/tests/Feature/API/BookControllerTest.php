@@ -122,23 +122,39 @@ class BookControllerTest extends TestCase
         });
     }
 
-    public function test_patch_book_endpoint(): void
+    public function test_put_non_existing_book_endpoint(): void
+    {
+        $updatedBook = [
+            'title' => 'test',
+            'isbn' => '1234567890',
+        ];
+
+        $response = $this->putJson('api/books/0', $updatedBook);
+
+        $response->assertStatus(404);
+    }
+
+    public function test_put_book_should_validate_when_try_update_a_invalid_book(): void
     {
         $newBook = Book::factory(1)->createOne();
 
         $updatedBook = [
-            'title' => 'test',
+            'title' => '',
+            'isbn' => '',
         ];
 
         $response = $this->putJson('api/books/'.$newBook->id, $updatedBook);
 
-        $response->assertStatus(200);
+        $response->assertStatus(422);
 
-        $response->assertJson(function (AssertableJson $json) use ($updatedBook) {
+        $response->assertJson(function (AssertableJson $json) {
 
-            $json->hasAll(['id', 'title', 'isbn', 'created_at', 'updated_at']);
+            $json->hasAll(['message', 'errors']);
 
-            $json->where('title', $updatedBook['title']);
+            $json->whereAll([
+                'errors.title.0'=> 'Este campo é obrigatório',
+                'errors.isbn.0'=> 'Este campo é obrigatório',
+            ]);
         });
     }
 
