@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\BookStoreRequest;
+use App\Http\Requests\API\BookUpdateRequest;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -33,9 +34,11 @@ class BookController extends Controller
         return response()->json($book, Response::HTTP_CREATED);
     }
 
-    public function update(Request $request, $bookId)
+    public function update(BookUpdateRequest $request, $bookId)
     {
-        $book = $this->book->find($bookId);
+        if(!$book = $this->book->find($bookId)) {
+            return response()->json(null, Response::HTTP_NOT_FOUND);
+        }
 
         $book->update($request->all());
 
