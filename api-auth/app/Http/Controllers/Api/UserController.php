@@ -11,12 +11,16 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function profile(Request $request)
+    {
+        return $request->user();
+    }
+
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
         
         if (Auth::attempt($credentials)) {
-            $user = Auth::user();
             $user = $request->user();
     
             $user->tokens()->delete();
