@@ -53,4 +53,13 @@ class UserController extends Controller
             'token_type' => 'Bearer',
         ];
     }
+
+    public function logout(Request $request)
+    {
+        $request->user()->tokens()->delete();
+
+        return [
+            'message' => 'Successfully logged out',
+        ];
+    }
 }
