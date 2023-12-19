@@ -8,4 +8,5 @@ Route::post('/register', [UserController::class, 'register'])->name('user.regist
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
+    Route::post('/logout', [UserController::class, 'logout'])->name('user.logout');
 });
